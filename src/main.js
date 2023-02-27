@@ -9,14 +9,10 @@ const productsSection = document.getElementsByClassName('products')[0];
 const listProducts = async () => {
   const productsList = await fetchProductsList('computador');
   productsList.forEach((p) => {
-    const id = p.id;
-    const title = p.title;
-    const thumbnail = p.thumbnail;
-    const price = p.price;
-    const product = createProductElement({id, title, thumbnail, price});
+    const { id, title, thumbnail, price } = p;
+    const product = createProductElement({ id, title, thumbnail, price });
     productsSection.appendChild(product);
   });
-}
+};
 
 listProducts();
-
