@@ -1,7 +1,7 @@
 import { searchCep } from './helpers/cepFunctions';
 import { fetchProductsList } from './helpers/fetchFunctions';
 import { createProductElement } from './helpers/shopFunctions';
-import { showLoading, hideLoading } from './helpers/loadingFunctions';
+import { showLoading, hideLoading } from './helpers/messageFunctions';
 import './style.css';
 
 document.querySelector('.cep-button').addEventListener('click', searchCep);
