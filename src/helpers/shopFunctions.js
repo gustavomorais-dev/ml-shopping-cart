@@ -105,7 +105,6 @@ export const createProductElement = ({ id, title, thumbnail, price }) => {
   section.className = 'product';
 
   section.appendChild(createCustomElement('span', 'product__id', id));
-
   const thumbnailContainer = createCustomElement('div', 'img__container');
   thumbnailContainer.appendChild(createProductImageElement(thumbnail));
   section.appendChild(thumbnailContainer);
