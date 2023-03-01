@@ -19,6 +19,20 @@ export const saveCartID = (id) => {
   localStorage.setItem('cartProducts', JSON.stringify(newCartProducts));
 };
 
+// Função que atualiza o preço do subtotal
+
+export const updatePrice = () => {
+  const price = document.getElementsByClassName('total-price')[0];
+  const cartProductsContainer = document.getElementsByClassName('cart__products')[0];
+  const listOfProducts = cartProductsContainer.childNodes;
+  let sum = 0;
+  listOfProducts.forEach((product) => {
+    const prPrice = product.getElementsByClassName('product__price__value')[0].innerText;
+    sum += parseFloat(prPrice);
+  });
+  price.innerText = sum;
+};
+
 /**
  * Função que remove um product do carrinho.
  * @param {string} id - ID do product a ser removido.
@@ -30,4 +44,5 @@ export const removeCartID = (id) => {
   const indexProduct = cartProducts.indexOf(id);
   cartProducts.splice(indexProduct, 1);
   localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
+  updatePrice();
 };

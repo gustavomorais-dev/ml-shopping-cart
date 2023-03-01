@@ -2,26 +2,27 @@ import { searchCep } from './helpers/cepFunctions';
 import { fetchProduct, fetchProductsList } from './helpers/fetchFunctions';
 import { createCartProductElement, createProductElement } from './helpers/shopFunctions';
 import { showLoading, hideLoading } from './helpers/messageFunctions';
-import { getSavedCartIDs, saveCartID } from './helpers/cartFunctions';
+import { getSavedCartIDs, saveCartID, updatePrice } from './helpers/cartFunctions';
 import './style.css';
 
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 const productsSection = document.getElementsByClassName('products')[0];
 const cartProductsContainer = document.getElementsByClassName('cart__products')[0];
 
-const recoverCart = () => {
+const recoverCart = async () => {
   const productsIds = getSavedCartIDs();
   const products = productsIds.map(async (id) => {
     const details = await fetchProduct(id);
     return details;
   });
-  Promise.all(products).then((list) => {
+  await Promise.all(products).then((list) => {
     list.forEach((productDetails) => {
       const { id, title, price, pictures } = productDetails;
       const newCartElement = createCartProductElement({ id, title, price, pictures });
       cartProductsContainer.appendChild(newCartElement);
     });
   });
+  updatePrice();
 };
 
 const addProduct = async (event) => {
@@ -31,6 +32,7 @@ const addProduct = async (event) => {
   const { id, title, price, pictures } = productDetails;
   const newCartElement = createCartProductElement({ id, title, price, pictures });
   cartProductsContainer.appendChild(newCartElement);
+  updatePrice();
 };
 
 const listProducts = async () => {
