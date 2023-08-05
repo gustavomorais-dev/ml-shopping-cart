@@ -7,6 +7,8 @@ export const getAddress = async (query) => {
   try {
     const promise1 = await fetch(`https://cep.awesomeapi.com.br/json/${query}`);
     const promise2 = await fetch(`https://brasilapi.com.br/api/cep/v2/${query}`);
+    console.log(promise1);
+    console.log(promise2);
     const data = await Promise.any([promise1, promise2])
       .then((response) => response.json());
     const addressType = data.address_type;
