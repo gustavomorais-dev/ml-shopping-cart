@@ -8,24 +8,18 @@ Para testar a aplicação localmente, clone o repositório e siga os seguintes p
 
 1. **Instalar Dependências:**
 
-<pre>
 ```
 $ npm install
 ```
-</pre>
 
 2. **Iniciar o Servidor de Desenvolvimento:**
 
-<pre>
 ```
 $ npm run dev
 ```
-</pre>
 
 3. **Rodar os testes:**
 
-<pre>
 ```
 $ npm test
 ```
-</pre>
